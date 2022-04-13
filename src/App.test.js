@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import App from './App';
+import App, {calcularNovoSaldo} from './App';
 
 
 //Main = Principal
@@ -28,4 +28,17 @@ describe('Main component', () => {
         });
 
     });
-})
+
+    // Testing a function
+    describe('When I realized a transaction', () => {
+        it('of withdraw, the value will decrease', () => {
+            const valores = {
+                transacao: 'saque',
+                valor: 50
+            };
+
+            const novoSaldo = calcularNovoSaldo(valores, 150);
+            expect(novoSaldo).toBe(100);
+        })
+    });
+});
